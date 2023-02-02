@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
     public int health;
     public int damage;
     public float speed;
@@ -14,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     public float timeBetweenAttack;
 
-    private void Start()
+    public virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }

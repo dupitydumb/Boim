@@ -6,12 +6,15 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     public float lifeTime; //Projectile life time
-    public int damage;
+
+    public GameObject explosion;
+
     // Start is called before the first frame update
     void Start()
     {
         //Destroy projectile after lifeTime
-        Destroy(gameObject, lifeTime);
+        Invoke ("DestroyProjectile", lifeTime);
+        
     }
 
     // Update is called once per frame
@@ -22,15 +25,8 @@ public class Projectile : MonoBehaviour
 
     void DestroyProjectile()
     {
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            collision.GetComponent<Enemy>().TakeDamage(damage);
-            DestroyProjectile();
-        }
+        
     }
 }
